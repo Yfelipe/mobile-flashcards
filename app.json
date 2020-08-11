@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "sdkVersion": "38.0.0",
+    "name": "YFlashCard",
+    "description": "The Flash Card App!",
+    "slug": "yflash",
+    "version": "1.0",
+    "icon": "https://img.icons8.com/office/16/000000/the-flash-head.png",
+    "ios": {
+      "bundleIdentifier": "org.yflash.exp"
+    },
+    "android": {
+      "package": "org.yflash.exp"
+    }
+  }
+}
