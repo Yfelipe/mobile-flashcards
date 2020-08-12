@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { Ionicons } from '@expo/vector-icons';
 import { idGenerate } from "../Helpers/General";
 import isEmpty from "react-native-web/dist/vendor/react-native/isEmpty";
+import TouchableButton from "./TouchableButton";
+
 
 
 class DeckAdd extends Component {
@@ -26,7 +28,8 @@ class DeckAdd extends Component {
         }
 
         dispatch(addDeck(id, deckTitle));
-        this.handelBack();
+        navigation.navigate("Deck", { id: id});
+        //this.handelBack();
 
     }
 
@@ -56,11 +59,11 @@ class DeckAdd extends Component {
                             onChangeText={title => this.handleTextChange(title)}
                             value={this.state.deckTitle}
                         />
-                        <TouchableOpacity style={styles.addButton} onPress={() => this.handleSubmit()}>
-                            <Text style={{color: "white", textAlign: "center"}}>
-                                Save
-                            </Text>
-                        </TouchableOpacity>
+                        <TouchableButton onPress={() => this.handleSubmit()}
+                                         styleButton={styles.addButton}
+                                         text="Save"
+                                         styleText={{color: "white", textAlign: "center"}}
+                        />
                     </View>
                 </View>
             </View>
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: "green",
         borderRadius: 15,
         padding: 10,
-        width: "50%",
+        width: 200,
     },
     topText: {
         marginBottom: 50,

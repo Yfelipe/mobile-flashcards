@@ -1,28 +1,19 @@
 import React, {Component} from "react";
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import TouchableButton from "./TouchableButton";
 
-class QuizResult extends Component {
+function QuizResult(props){
+    const { correct, total } = props.route.params;
+    const { navigation } = props;
 
-    handleHome(){
-        const { navigation } = this.props;
-
-        navigation.navigate("Decks");
-    }
-
-
-    render() {
-        const { correct, total } = this.props.route.params;
-
-        return (
-            <View style={styles.mainContainer}>
-                <Text style={styles.resultText}>You Scored</Text>
-                <Text style={styles.resultCount}>{correct}/{total}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => this.handleHome()}>
-                    <Text style={styles.buttonText}>Home</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    }
+    return (
+        <View style={styles.mainContainer}>
+            <Text style={styles.resultText}>You Scored</Text>
+            <Text style={styles.resultCount}>{correct}/{total}</Text>
+            <TouchableButton onPress={() => navigation.navigate("Quiz")} styleButton={styles.button} text="Restart" styleText={styles.buttonText} />
+            <TouchableButton onPress={() => navigation.navigate("Deck")} styleButton={styles.button} text="Home" styleText={styles.buttonText} />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         borderRadius: 15,
         padding: 10,
-        width: "50%",
+        width: 200,
     },
     buttonText: {
         color: "white",

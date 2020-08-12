@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import React from "react";
+import {Text, View, StyleSheet} from "react-native";
+import TouchableButton from "./TouchableButton";
 
 function DeckOverview(props) {
     const { deck, navigateToDeck } = props;
@@ -13,9 +14,12 @@ function DeckOverview(props) {
                 <Text style={styles.deckCount} key={"count" + deck.id}>
                     {deck.cards.length} Cards
                 </Text>
-                <TouchableOpacity onPress={() => navigateToDeck()} style={styles.deckButton} key={"button" + deck.id}>
-                    <Text style={{color: "white"}}>View</Text>
-                </TouchableOpacity>
+
+                <TouchableButton onPress={() => navigateToDeck()}
+                                 styleButton={styles.deckButton}
+                                 text="View"
+                                 styleText={{color: "white", textAlign: "center"}}
+                />
             </View>
         </View>
     )

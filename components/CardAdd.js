@@ -5,6 +5,7 @@ import { addCard } from "../actions";
 import { connect } from "react-redux";
 import {Ionicons} from "@expo/vector-icons";
 import isEmpty from "react-native-web/dist/vendor/react-native/isEmpty";
+import TouchableButton from "./TouchableButton";
 
 class CardAdd extends Component {
     state = {
@@ -62,11 +63,12 @@ class CardAdd extends Component {
                                 onChangeText={answer => this.handleTextChange("answer", answer )}
                                 value={answer}
                             />
-                            <TouchableOpacity style={styles.addButton} onPress={() => this.handleSubmit()}>
-                                <Text style={{color: "white", textAlign: "center"}}>
-                                    Save
-                                </Text>
-                            </TouchableOpacity>
+
+                            <TouchableButton onPress={() => this.handleSubmit()}
+                                             styleButton={styles.addButton}
+                                             text="Save"
+                                             styleText={{color: "white", textAlign: "center"}}
+                            />
                         </View>
                     </View>
                 </ScrollView>
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: "green",
         borderRadius: 15,
         padding: 10,
-        width: "50%",
+        width: 200,
     },
     mainContainer: {
         marginTop:50,

@@ -5,6 +5,7 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CardsQuickView from "./CardsQuickView";
 import {deleteDeck} from "../actions";
 import isEmpty from "react-native-web/dist/vendor/react-native/isEmpty";
+import TouchableButton from "./TouchableButton";
 
 class Deck extends Component {
 
@@ -47,16 +48,19 @@ class Deck extends Component {
                         <Text>
                             {deck.cards.length} Cards
                         </Text>
-                        <TouchableOpacity style={styles.button} onPress={ () => this.cardsCheck(deck.cards)}>
-                            <Text style={{color: "white", textAlign: "center"}}>
-                                Start Quiz
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate("Add Card", { id: id})}>
-                            <Text style={{color: "white", textAlign: "center"}}>
-                                Add Card
-                            </Text>
-                        </TouchableOpacity>
+
+                        <TouchableButton onPress={() => this.cardsCheck(deck.cards)}
+                                         styleButton={styles.button}
+                                         text="Start Quiz"
+                                         styleText={{color: "white", textAlign: "center"}}
+                        />
+
+                        <TouchableButton onPress={() => navigation.navigate("Add Card", { id: id})}
+                                         styleButton={styles.button}
+                                         text="Add Card"
+                                         styleText={{color: "white", textAlign: "center"}}
+                        />
+
                         <View style={styles.cardList}>
                             <Text style={{textAlign: "center", fontSize: 15, fontWeight: "bold"}}>Cards In Deck</Text>
                             <ScrollView centerContent={true} style={styles.list}>
@@ -69,7 +73,7 @@ class Deck extends Component {
                         </View>
                     </View>
                 </ScrollView>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{position: 'absolute'}}>
+                <TouchableOpacity onPress={() => navigation.navigate("Decks")} style={{position: 'absolute'}}>
                     <Ionicons name="md-arrow-round-back" size={35} color="black" style={{margin: 25}} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.handleDelete(id)} style={{position: 'absolute', right: 0}}>
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         borderRadius: 15,
         padding: 10,
-        width: "50%",
+        width: 200,
     },
     cardList: {
         width: "50%",
